@@ -1,4 +1,3 @@
-package GradingSystem;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -12,5 +11,18 @@ public class App {
         System.out.print("\033[H\033[2J");
         System.out.flush();
         System.out.println(title.toUpperCase());
+    }
+
+    public static String getCompleteTitle(String subjectcode) {
+        switch (subjectcode) {
+            case "S":
+                return "Science";
+            case "T":
+                return "Technology";
+            case "E":
+                return "Engineering";
+            default: // M
+                return "Math";
+        }
     }
 }

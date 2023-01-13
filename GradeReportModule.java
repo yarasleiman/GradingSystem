@@ -1,4 +1,3 @@
-package GradingSystem;
 
 import java.util.Scanner;
 
@@ -48,7 +47,8 @@ public class GradeReportModule {
         for(int i = 0; i < App.listGrades.size(); i++){
             if(App.listGrades.get(i).getstudNumber() == studNum) {
                 Grade g = App.listGrades.get(i);
-                System.out.printf(" %-15s | %-10s %n", g.getSubject() , g.getGrade());
+                String subjTitle = App.getCompleteTitle(g.getSubject());
+                System.out.printf(" %-15s | %-10s %n", subjTitle , g.getGrade());
                 n++;
                 total += Float.parseFloat(g.getGrade());
             }

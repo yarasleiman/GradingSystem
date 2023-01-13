@@ -1,4 +1,3 @@
-package GradingSystem;
 
 public class StudentsModule {
     /* STUDENTS *************/

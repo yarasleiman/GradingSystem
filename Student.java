@@ -1,4 +1,3 @@
-package GradingSystem;
 
 public class Student{
    int number;

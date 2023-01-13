@@ -1,4 +1,3 @@
-package GradingSystem;
 
 public class GradeModule {
     public static void GradesMenus() {
@@ -6,9 +5,9 @@ public class GradeModule {
             App.clearScreen("***** GRADING SYSTEM / GRADES ****");
 
             System.out.println("LIST OF GRADES (LATEST 10)");
-            
+
             System.out.printf("%-25s | %-5s | %-9s | %-13s | %8s %n",
-                        "SUBJECT", "YEAR", "SECTION", "STUDENT NO." , "GRADE");
+                    "SUBJECT", "YEAR", "SECTION", "STUDENT NO.", "GRADE");
 
             for (int i = 0; i < App.listGrades.size(); i++) {
                 Grade g = App.listGrades.get(i);
@@ -25,8 +24,10 @@ public class GradeModule {
                     }
                 }
 
-                System.out.printf("%-25s | %-5s | %-9s | %-13s | %8s %n",
-                        g.getSubject(), year,
+                String subjTitle = App.getCompleteTitle(g.getSubject());
+
+                System.out.printf("%-15s | %-5s | %-9s | %-13s | %8s %n",
+                        subjTitle, year,
                         section, g.getstudNumber(), g.getGrade());
 
             }
@@ -55,6 +56,7 @@ public class GradeModule {
             }
         }
     }
+
     private static void GradeAdd() {
         App.clearScreen("GRADING SYSTEM / GRADES / ADD");
         System.out.print("Subject (S, T, E or M): ");
@@ -74,9 +76,10 @@ public class GradeModule {
 
         App.kb.nextLine();
     }
+
     private static void GradeEdit() {
         App.clearScreen(" GRADING SYSTEM / GRADES / EDIT ");
-        
+
         System.out.print("Enter the Subject (S, T, E or M): ");
         String sub = App.kb.next();
 
@@ -84,9 +87,9 @@ public class GradeModule {
         int studNum = App.kb.nextInt();
 
         Grade G = null;
-        for(int i = 0; i < App.listGrades.size(); i++){
+        for (int i = 0; i < App.listGrades.size(); i++) {
             Grade g = App.listGrades.get(i);
-            if(g.getSubject().equals(sub) && g.getstudNumber() == studNum){
+            if (g.getSubject().equals(sub) && g.getstudNumber() == studNum) {
                 G = g;
             }
         }
@@ -96,12 +99,11 @@ public class GradeModule {
             App.kb.next();
             return;
         }
-        
+
         System.out.print("Grade: " + G.getGrade());
         String grade = App.kb.next();
         System.out.print("Save (Y or N): ");
         String decision = App.kb.next();
-
 
         if (decision.equals("Y") || decision.equals("y")) {
             G.setGrade(grade);
@@ -109,6 +111,7 @@ public class GradeModule {
         }
         App.kb.next();
     }
+
     public static void GradeDelete() {
         App.clearScreen(" GRADING SYSTEM / GRADES / DELETE");
         System.out.print("Enter the Subject (S, T, E or M): ");
@@ -121,7 +124,8 @@ public class GradeModule {
         if (d.equals("Y") || d.equals("y")) {
             int G = -1;
             for (int i = 0; i < App.listGrades.size(); i++) {
-                if (studNum == App.listGrades.get(i).getstudNumber() && App.listGrades.get(i).getSubject().equals(sub)) {
+                if (studNum == App.listGrades.get(i).getstudNumber()
+                        && App.listGrades.get(i).getSubject().equals(sub)) {
                     G = i;
                     break;
                 }
@@ -133,8 +137,8 @@ public class GradeModule {
                 return;
             } else {
                 App.listGrades.remove(G);
-                    System.out.println("Deleted " + G);
-                    App.kb.next();
+                System.out.println("Deleted " + G);
+                App.kb.next();
             }
         }
     }
